@@ -1,0 +1,15 @@
+name: Sync upstream
+
+on:
+  schedule:
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Sync upstream
+        run: gh repo sync jdel/cheat-sheets --branch main --source ChristianLempa/cheat-sheets --force
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
